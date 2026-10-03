@@ -1,3 +1,5 @@
+
+Claude finished the response
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,10 +11,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#e9d8b4; --paper-2:#dfc79a; --paper-3:#cdb27f;
-    --ink:#2c1c10; --ink-soft:#4a3520; --bark:#33200f; --bark-2:#1f130a;
-    --wood:#6b4226; --wood-light:#8a5a34; --gold:#b8892f; --gold-light:#e3c778;
-    --maroon:#7a2e1d; --maroon-light:#9c4530;
+    --paper:
+#e9d8b4; --paper-2:
+#dfc79a; --paper-3:
+#cdb27f;
+    --ink:
+#2c1c10; --ink-soft:
+#4a3520; --bark:
+#33200f; --bark-2:
+#1f130a;
+    --wood:
+#6b4226; --wood-light:
+#8a5a34; --gold:
+#b8892f; --gold-light:
+#e3c778;
+    --maroon:
+#7a2e1d; --maroon-light:
+#9c4530;
     --shadow-soft: rgba(20,10,0,0.35);
     --shadow-hard: rgba(10,5,0,0.55);
   }
@@ -114,7 +129,8 @@
     flex:0 0 180px; width:180px; border:6px solid var(--wood);
     outline:2px solid var(--gold); outline-offset:-6px;
     box-shadow:0 14px 26px var(--shadow-soft);
-    background:radial-gradient(circle at 40% 30%, #4a2f18, var(--bark) 75%);
+    background:radial-gradient(circle at 40% 30%, 
+#4a2f18, var(--bark) 75%);
     aspect-ratio:4/5; margin:14px auto 4px; overflow:visible;
     transform-style:preserve-3d; will-change:transform; cursor:pointer;
     animation:figureFloat 4.6s ease-in-out infinite;
@@ -158,7 +174,8 @@
   }
   .medallion-portrait{
     position:absolute; inset:9%; border-radius:50%;
-    background:radial-gradient(circle at 42% 30%, #4a2f18, var(--bark) 72%);
+    background:radial-gradient(circle at 42% 30%, 
+#4a2f18, var(--bark) 72%);
     box-shadow:inset 0 0 30px rgba(0,0,0,0.6), 0 16px 26px var(--shadow-hard);
     transform:translateZ(26px); overflow:hidden;
   }
@@ -343,10 +360,13 @@
     padding:24px; background:rgba(20,10,0,.9); cursor:zoom-out;
   }
   .lightbox.open{ display:flex; }
-  .lightbox img{ max-width:88vw; max-height:56vh; border:8px solid #fffaf0; box-shadow:0 20px 50px rgba(0,0,0,.6); background:#fffaf0; }
+  .lightbox img{ max-width:88vw; max-height:56vh; border:8px solid 
+#fffaf0; box-shadow:0 20px 50px rgba(0,0,0,.6); background:
+#fffaf0; }
   .lightbox .lb-cap{ font-family:'Playfair Display', serif; font-weight:700; font-size:1.15rem; color:var(--gold-light); text-align:center; }
   .lightbox .lb-info{ max-width:52ch; text-align:center; color:var(--paper); font-size:.95rem; line-height:1.6; margin:0; }
-  .lightbox .lb-hint{ font-size:.8rem; color:#cdb27f; }
+  .lightbox .lb-hint{ font-size:.8rem; color:
+#cdb27f; }
 
   @media (max-width:640px){
     .masthead{ padding:16px 18px 10px; }
@@ -363,21 +383,33 @@
     <svg viewBox="0 0 800 1200" preserveAspectRatio="xMidYMid slice">
       <defs>
         <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M40 0 L0 0 0 40" fill="none" stroke="#6b4226" stroke-width="0.5"/>
+          <path d="M40 0 L0 0 0 40" fill="none" stroke="
+#6b4226" stroke-width="0.5"/>
         </pattern>
       </defs>
       <rect width="800" height="1200" fill="url(#grid)"/>
-      <circle cx="640" cy="160" r="70" fill="none" stroke="#6b4226" stroke-width="1.5"/>
-      <path d="M640,90 L648,150 L640,230 L632,150 Z" fill="#6b4226"/>
-      <path d="M570,160 L630,168 L710,160 L630,152 Z" fill="#6b4226"/>
-      <path d="M120,300 Q160,280 190,310 Q210,340 180,360 Q140,375 120,345 Q105,320 120,300 Z" fill="none" stroke="#6b4226" stroke-width="1.5"/>
-      <path d="M100,600 Q170,560 230,610 Q260,650 210,680 Q140,700 105,655 Q80,625 100,600 Z" fill="none" stroke="#6b4226" stroke-width="1.5"/>
-      <path d="M500,850 Q560,820 610,860 Q630,900 580,920 Q520,935 495,895 Q480,865 500,850 Z" fill="none" stroke="#6b4226" stroke-width="1.5"/>
-      <path d="M150,340 Q300,420 480,500 Q600,560 700,650" fill="none" stroke="#6b4226" stroke-width="1.2" stroke-dasharray="3 8"/>
-      <path d="M200,650 Q350,700 480,780 Q560,830 610,880" fill="none" stroke="#6b4226" stroke-width="1.2" stroke-dasharray="3 8"/>
-      <circle cx="230" cy="980" r="55" fill="none" stroke="#6b4226" stroke-width="1.5"/>
-      <path d="M230,925 L236,975 L230,1035 L224,975 Z" fill="#6b4226"/>
-      <path d="M175,980 L225,987 L285,980 L225,973 Z" fill="#6b4226"/>
+      <circle cx="640" cy="160" r="70" fill="none" stroke="
+#6b4226" stroke-width="1.5"/>
+      <path d="M640,90 L648,150 L640,230 L632,150 Z" fill="
+#6b4226"/>
+      <path d="M570,160 L630,168 L710,160 L630,152 Z" fill="
+#6b4226"/>
+      <path d="M120,300 Q160,280 190,310 Q210,340 180,360 Q140,375 120,345 Q105,320 120,300 Z" fill="none" stroke="
+#6b4226" stroke-width="1.5"/>
+      <path d="M100,600 Q170,560 230,610 Q260,650 210,680 Q140,700 105,655 Q80,625 100,600 Z" fill="none" stroke="
+#6b4226" stroke-width="1.5"/>
+      <path d="M500,850 Q560,820 610,860 Q630,900 580,920 Q520,935 495,895 Q480,865 500,850 Z" fill="none" stroke="
+#6b4226" stroke-width="1.5"/>
+      <path d="M150,340 Q300,420 480,500 Q600,560 700,650" fill="none" stroke="
+#6b4226" stroke-width="1.2" stroke-dasharray="3 8"/>
+      <path d="M200,650 Q350,700 480,780 Q560,830 610,880" fill="none" stroke="
+#6b4226" stroke-width="1.2" stroke-dasharray="3 8"/>
+      <circle cx="230" cy="980" r="55" fill="none" stroke="
+#6b4226" stroke-width="1.5"/>
+      <path d="M230,925 L236,975 L230,1035 L224,975 Z" fill="
+#6b4226"/>
+      <path d="M175,980 L225,987 L285,980 L225,973 Z" fill="
+#6b4226"/>
     </svg>
   </div>
 
@@ -397,10 +429,12 @@
     <section class="slide active" data-title="Sampul">
       <div class="cover-page">
         <svg class="doodle" viewBox="0 0 40 40" style="width:34px; top:-6px; left:6px; transform:rotate(-12deg);">
-          <path d="M20,2 L23,15 L36,15 L25,23 L29,36 L20,27 L11,36 L15,23 L4,15 L17,15 Z" fill="#b8892f"/>
+          <path d="M20,2 L23,15 L36,15 L25,23 L29,36 L20,27 L11,36 L15,23 L4,15 L17,15 Z" fill="
+#b8892f"/>
         </svg>
         <svg class="doodle" viewBox="0 0 40 40" style="width:30px; top:0; right:10px; transform:rotate(14deg);">
-          <path d="M20,2 L23,15 L36,15 L25,23 L29,36 L20,27 L11,36 L15,23 L4,15 L17,15 Z" fill="#7a2e1d"/>
+          <path d="M20,2 L23,15 L36,15 L25,23 L29,36 L20,27 L11,36 L15,23 L4,15 L17,15 Z" fill="
+#7a2e1d"/>
         </svg>
         <div class="slide-heading play">
           <span class="slide-eyebrow">Mading Sejarah</span>
@@ -419,25 +453,38 @@
                 <div class="img-fallback">SB</div>
               </div>
               <svg class="floaty f-clove" viewBox="0 0 60 60" fill="none">
-                <path d="M30 6 L34 22 L30 30 L26 22 Z" fill="#4a2f18"/>
-                <circle cx="30" cy="6" r="6" fill="#7a2e1d"/>
-                <path d="M30 30 L30 54" stroke="#4a2f18" stroke-width="3" stroke-linecap="round"/>
+                <path d="M30 6 L34 22 L30 30 L26 22 Z" fill="
+#4a2f18"/>
+                <circle cx="30" cy="6" r="6" fill="
+#7a2e1d"/>
+                <path d="M30 30 L30 54" stroke="
+#4a2f18" stroke-width="3" stroke-linecap="round"/>
               </svg>
               <svg class="floaty f-ship" viewBox="0 0 120 90" fill="none">
-                <path d="M10,60 Q60,80 110,60 L100,72 Q60,86 20,72 Z" fill="#3b2010"/>
-                <rect x="56" y="10" width="4" height="52" fill="#3b2010"/>
-                <path d="M60,14 L92,44 L60,50 Z" fill="#dfc79a"/>
-                <path d="M60,20 L38,46 L60,50 Z" fill="#cdb27f"/>
+                <path d="M10,60 Q60,80 110,60 L100,72 Q60,86 20,72 Z" fill="
+#3b2010"/>
+                <rect x="56" y="10" width="4" height="52" fill="
+#3b2010"/>
+                <path d="M60,14 L92,44 L60,50 Z" fill="
+#dfc79a"/>
+                <path d="M60,20 L38,46 L60,50 Z" fill="
+#cdb27f"/>
               </svg>
               <svg class="floaty f-fort" viewBox="0 0 100 100" fill="none">
-                <rect x="20" y="40" width="60" height="46" fill="#5c3a20"/>
-                <rect x="15" y="30" width="12" height="16" fill="#5c3a20"/>
-                <rect x="73" y="30" width="12" height="16" fill="#5c3a20"/>
-                <rect x="44" y="24" width="12" height="20" fill="#5c3a20"/>
+                <rect x="20" y="40" width="60" height="46" fill="
+#5c3a20"/>
+                <rect x="15" y="30" width="12" height="16" fill="
+#5c3a20"/>
+                <rect x="73" y="30" width="12" height="16" fill="
+#5c3a20"/>
+                <rect x="44" y="24" width="12" height="20" fill="
+#5c3a20"/>
               </svg>
               <svg class="floaty f-kris" viewBox="0 0 40 100" fill="none">
-                <path d="M20,0 Q28,20 18,32 Q30,44 16,56 Q28,66 20,80 L20,100" stroke="#b8892f" stroke-width="4" fill="none" stroke-linecap="round"/>
-                <rect x="12" y="80" width="16" height="18" rx="3" fill="#4a2f18"/>
+                <path d="M20,0 Q28,20 18,32 Q30,44 16,56 Q28,66 20,80 L20,100" stroke="
+#b8892f" stroke-width="4" fill="none" stroke-linecap="round"/>
+                <rect x="12" y="80" width="16" height="18" rx="3" fill="
+#4a2f18"/>
               </svg>
             </div>
             <div class="medallion-caption">Sultan Baabullah, ± 1528–1583</div>
@@ -510,7 +557,9 @@
           <p class="dropcap">Sepeninggal ayahnya, Sultan Baabullah pun naik takhta menggantikan Sultan Khairun. Ia segera menuntut pemerintah kolonial Portugis bertanggung jawab dengan menghukum Gubernur Lopez atas kematian ayahnya.</p>
           <p>Tuntutan itu tidak pernah digubris. Sikap Portugis yang mengabaikan permintaan keadilan inilah yang akhirnya membangkitkan emosi Sultan Baabullah — dan menjadi titik balik yang mengubah kekecewaan pribadi menjadi perlawanan seluruh rakyat Ternate.</p>
           <div class="figure-note">
-            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="none" stroke="#6b4226" stroke-width="2"/><path d="M20 10 L20 22 M20 28 L20 30" stroke="#7a2e1d" stroke-width="3" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="none" stroke="
+#6b4226" stroke-width="2"/><path d="M20 10 L20 22 M20 28 L20 30" stroke="
+#7a2e1d" stroke-width="3" stroke-linecap="round"/></svg>
             <span>Kemarahan Baabullah bukan sekadar dendam pribadi, melainkan tuntutan atas hak dan keadilan bagi rakyatnya.</span>
           </div>
           <button type="button" class="continue-btn">Lanjut: Pengepungan Gam Lamo ⛺</button>
@@ -657,17 +706,24 @@
   var TPL = {
     ship: '<div class="t-el t-ship"><div class="waterline"></div>' +
       '<svg class="sail-ship" viewBox="0 0 120 90" fill="none">' +
-      '<path d="M6,60 Q60,84 114,60 L102,74 Q60,90 18,74 Z" fill="#3b2010"/>' +
-      '<rect x="57" y="8" width="4" height="56" fill="#3b2010"/>' +
-      '<path d="M61,12 L96,46 L61,52 Z" fill="#e3c778"/>' +
-      '<path d="M61,18 L34,48 L61,52 Z" fill="#dfc79a"/></svg></div>',
+      '<path d="M6,60 Q60,84 114,60 L102,74 Q60,90 18,74 Z" fill="
+#3b2010"/>' +
+      '<rect x="57" y="8" width="4" height="56" fill="
+#3b2010"/>' +
+      '<path d="M61,12 L96,46 L61,52 Z" fill="
+#e3c778"/>' +
+      '<path d="M61,18 L34,48 L61,52 Z" fill="
+#dfc79a"/></svg></div>',
     bookflip: '<div class="t-el t-bookflip"><div class="flip-page"></div></div>',
     wave: '<div class="t-el t-wave"><div class="wave-band"></div></div>',
     compass: '<div class="t-el t-compass">' +
       '<svg class="compass-emblem" viewBox="0 0 100 100">' +
-      '<circle cx="50" cy="50" r="46" fill="none" stroke="#e3c778" stroke-width="4"/>' +
-      '<path d="M50,10 L58,50 L50,90 L42,50 Z" fill="#b8892f"/>' +
-      '<circle cx="50" cy="50" r="6" fill="#7a2e1d"/></svg></div>'
+      '<circle cx="50" cy="50" r="46" fill="none" stroke="
+#e3c778" stroke-width="4"/>' +
+      '<path d="M50,10 L58,50 L50,90 L42,50 Z" fill="
+#b8892f"/>' +
+      '<circle cx="50" cy="50" r="6" fill="
+#7a2e1d"/></svg></div>'
   };
 
   slides.forEach(function(_, i){
@@ -855,4 +911,41 @@
 })();
 </script>
 </body>
-</html>
+</html>, tolong agar tampilannya juga responsive di mobile/ hp bukan hanya di dekstop saja
+
+Menyesuaikan garis waktu dan kotak dialog agar pas di layar kecil.
+Saya cek panduan desain dulu, lalu saya perbaiki tampilan mobile-nya.
+
+Read a file, ran a command, shared files
+Madingnya sudah saya buat responsif untuk HP, desain dan isinya tidak berubah. Saya belum mengujinya di perangkat sungguhan, jadi coba buka di HP dan beri tahu kalau ada yang masih kurang pas.
+
+Tampilan
+
+Bingkai dan header: bingkai kayu dan outline dipertipis di HP, dan padding header dikecilkan.
+Tinggi halaman: tinggi minimum 540px dihapus di HP, jadi halaman mengikuti panjang isinya.
+Posisi foto: foto sekarang berada di bawah teks dan di atas tombol "Lanjut", dengan ukuran menyesuaikan lebar layar.
+Sampul: medali, ikon yang melayang, dan label namanya tidak lagi keluar dari layar atau menyebabkan scroll ke samping.
+Timeline, QR, dan kotak "Tahukah kamu?": ukuran dan jaraknya disesuaikan untuk layar sempit.
+Perangkat lain: ada penyesuaian khusus untuk tablet, HP berukuran kecil (≤380px), dan HP dalam mode lanskap.
+Navigasi dan sentuhan
+
+Tombol: tombol "Mulai Membaca" dan "Lanjut" dibuat lebih lebar sehingga mudah ditekan jempol.
+Titik navigasi: titik navigasi menempel di bawah layar dan area sentuhnya diperluas.
+Geser antar halaman: swipe hanya berpindah halaman kalau gerakannya dominan horizontal, jadi scroll ke bawah tidak ikut memindahkan slide.
+Scroll otomatis: setiap pindah halaman, tampilan otomatis kembali ke atas.
+Efek tilt 3D: efek miring ini hanya aktif untuk mouse, supaya tidak "menempel" setelah foto diketuk di layar sentuh.
+Kotak info foto: bisa di-scroll kalau teksnya panjang, dan mengikuti area aman layar (notch).
+Gambar yang dipanggil lewat nama file (benteng.jpg, QR.jpeg, dan lainnya) harus berada satu folder dengan file HTML ini. Kalau tidak, yang muncul adalah tampilan cadangan berupa teks.
+
+
+Mading sultan baabullah
+Code·HTML 
+
+
+
+
+Claude is AI and can make mistakes.
+
+
+Mading sultan baabullah · HTML
+
