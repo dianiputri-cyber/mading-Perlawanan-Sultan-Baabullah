@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perlawanan Sultan Baabullah — Ternate, Maluku Utara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e9d8b4; --paper-2:#dfc79a; --paper-3:#cdb27f;
+    --ink:#2c1c10; --ink-soft:#4a3520; --bark:#33200f; --bark-2:#1f130a;
+    --wood:#6b4226; --wood-light:#8a5a34; --gold:#b8892f; --gold-light:#e3c778;
+    --maroon:#7a2e1d; --maroon-light:#9c4530;
+    --shadow-soft: rgba(20,10,0,0.35);
+    --shadow-hard: rgba(10,5,0,0.55);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bark-2); color:var(--ink);
+    font-family:'Lora', Georgia, serif; font-size:16.5px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  h1,h2,h3{ font-family:'Playfair Display', Georgia, serif; color:var(--bark); margin:0; }
+  a{color:var(--maroon);}
+  ::selection{background:var(--gold-light); color:var(--bark);}
+  :focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
+
+  .page{
+    max-width:1000px; margin:0 auto; min-height:100vh;
+    display:flex; flex-direction:column;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.10), transparent 45%),
+      radial-gradient(ellipse at 85% 90%, rgba(0,0,0,0.10), transparent 45%),
+      repeating-linear-gradient(0deg, rgba(120,90,50,0.05) 0px, rgba(120,90,50,0.05) 1px, transparent 1px, transparent 3px),
+      var(--paper);
+    box-shadow: 0 0 0 1px var(--gold), 0 40px 90px rgba(0,0,0,0.6);
+    position:relative;
+    border:14px solid var(--bark);
+    outline: 3px solid var(--gold);
+    outline-offset:-20px;
+  }
+
+  .map-bg{ position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; opacity:0.15; mix-blend-mode:multiply; }
+  .map-bg svg{ width:100%; height:100%; }
+
+  .spiral{
+    position:absolute; left:5px; top:64px; bottom:64px; width:16px;
+    display:flex; flex-direction:column; justify-content:space-between; z-index:3; pointer-events:none;
+  }
+  .spiral span{
+    display:block; width:13px; height:13px; border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, var(--paper), var(--wood-light) 70%, var(--bark) 100%);
+    box-shadow: inset 0 0 0 2px var(--bark), 2px 2px 4px rgba(0,0,0,0.35);
+  }
+  @media (max-width:640px){ .spiral{ display:none; } }
+
+  .masthead, .slides-viewport, .pager{ position:relative; z-index:1; }
+
+  .masthead{ padding:22px 40px 14px 56px; text-align:center; border-bottom:3px double var(--wood); flex:none; }
+  .masthead .kicker{ font-family:'Lora', serif; font-style:italic; color:var(--maroon); font-size:0.78rem; letter-spacing:0.04em; }
+  .masthead h1{ font-size:clamp(1.4rem, 3.4vw, 2rem); font-weight:800; line-height:1.08; margin:4px 0 0; }
+  .masthead .rule{ margin:10px auto 0; width:150px; height:2px; background:linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+  .slides-viewport{ position:relative; flex:1 1 auto; overflow:hidden; min-height:540px; perspective:1400px; }
+  .slide{
+    position:absolute; inset:0; overflow-y:auto; padding:28px 44px 24px 58px;
+    opacity:0; visibility:hidden; transform:translateX(24px);
+    transition:opacity 0.42s ease, transform 0.42s ease; pointer-events:none;
+  }
+  .slide.active{ opacity:1; visibility:visible; transform:translateX(0); pointer-events:auto; position:relative; }
+
+  .slide h2{ font-size:clamp(1.2rem, 2.8vw, 1.55rem); }
+  .slide-heading{ margin-bottom:10px; position:relative; }
+  .slide-heading .slide-eyebrow, .slide-heading h2{ opacity:0; transform:translateY(14px); }
+  .slide-heading.play .slide-eyebrow{ animation:headingIn 0.55s ease forwards; }
+  .slide-heading.play h2{ animation:headingIn 0.55s ease forwards 0.12s; }
+  @keyframes headingIn{ to{ opacity:1; transform:translateY(0); } }
+  .slide-eyebrow{ font-family:'Playfair Display', serif; font-style:italic; font-weight:600; color:var(--gold); font-size:1.3rem; display:block; }
+  .slide p{ color:var(--ink); max-width:70ch; }
+  .slide p + p{ margin-top:0.85em; }
+  .slide-body{ display:flex; gap:26px; flex-wrap:wrap; align-items:flex-start; }
+  .slide-text{ flex:1 1 320px; min-width:0; }
+
+  .dropcap:first-letter{
+    font-family:'Playfair Display', serif; font-weight:800; font-size:3rem;
+    float:left; line-height:0.85; padding:0.03em 0.08em 0 0; color:var(--maroon);
+  }
+  .pull{
+    margin:20px 0 16px; padding:14px 18px; border-left:4px solid var(--maroon);
+    background:rgba(122,46,29,0.06); font-family:'Playfair Display', serif;
+    font-style:italic; color:var(--bark); font-size:1.05rem;
+    position:relative; transform:rotate(-0.6deg); box-shadow:0 6px 14px rgba(0,0,0,0.15);
+  }
+  .pull::before{
+    content:""; position:absolute; top:-10px; left:22px; width:52px; height:18px;
+    background:repeating-linear-gradient(135deg, var(--gold-light), var(--gold-light) 5px, var(--maroon-light) 5px, var(--maroon-light) 10px);
+    opacity:0.9; transform:rotate(-3deg);
+  }
+  .figure-note{
+    display:flex; gap:12px; align-items:center; margin:14px 0; padding:10px 14px;
+    background:rgba(107,66,38,0.08); border:1px dashed var(--wood); border-radius:6px;
+    font-size:0.88rem; color:var(--ink-soft);
+  }
+  .figure-note svg{ width:32px; height:32px; flex:none; }
+
+  /* ---------- foto yang bisa diklik: 3D tilt mengikuti kursor + info saat diketuk ---------- */
+  .side-figure{
+    position:relative;
+    flex:0 0 180px; width:180px; border:6px solid var(--wood);
+    outline:2px solid var(--gold); outline-offset:-6px;
+    box-shadow:0 14px 26px var(--shadow-soft);
+    background:radial-gradient(circle at 40% 30%, #4a2f18, var(--bark) 75%);
+    aspect-ratio:4/5; margin:14px auto 4px; overflow:visible;
+    transform-style:preserve-3d; will-change:transform; cursor:pointer;
+    animation:figureFloat 4.6s ease-in-out infinite;
+    transition:transform 0.18s ease-out, box-shadow 0.18s ease-out;
+  }
+  @keyframes figureFloat{ 0%,100%{ transform:translateY(0) rotate(-1deg);} 50%{ transform:translateY(-6px) rotate(1deg);} }
+  .side-figure::before{
+    content:""; position:absolute; top:-11px; left:50%; transform:translateX(-50%) rotate(-4deg);
+    width:64px; height:20px; z-index:2;
+    background:repeating-linear-gradient(135deg, var(--gold-light), var(--gold-light) 5px, var(--maroon-light) 5px, var(--maroon-light) 10px);
+    opacity:0.9; box-shadow:0 3px 6px rgba(0,0,0,0.3);
+  }
+  .side-figure > *{ overflow:hidden; width:100%; height:100%; display:block; border-radius:0; }
+  .side-figure:hover, .side-figure:focus-visible{
+    animation-play-state:paused;
+    box-shadow:0 22px 34px var(--shadow-hard);
+  }
+  .side-figure img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .side-figure .img-fallback{
+    display:none; width:100%; height:100%; align-items:center; justify-content:center;
+    color:var(--gold-light); font-family:'Playfair Display', serif; font-weight:700; font-size:1.4rem;
+    background:radial-gradient(circle at 40% 30%, var(--wood-light), var(--bark) 75%);
+  }
+  .side-caption{ text-align:center; font-size:0.74rem; color:var(--ink-soft); font-style:italic; max-width:180px; margin:6px auto 0; }
+  .side-caption .tap-hint{ display:block; font-size:0.68rem; color:var(--wood); margin-top:2px; }
+
+  .doodle{ position:absolute; pointer-events:none; opacity:0.92; filter:drop-shadow(0 3px 4px rgba(0,0,0,0.22)); z-index:2; }
+
+  .cover-wrap{ display:flex; flex-direction:column; align-items:center; gap:14px; padding-top:10px; }
+  .medallion-entrance{ opacity:0; transform:scale(0.75) translateY(18px); }
+  .medallion-entrance.play{ animation:medallionIn 0.75s cubic-bezier(.2,.8,.3,1) forwards; }
+  @keyframes medallionIn{ to{ opacity:1; transform:scale(1) translateY(0); } }
+  .medallion-stage{
+    width:min(52vw, 220px); aspect-ratio:1/1; position:relative; cursor:pointer;
+    transform-style:preserve-3d; will-change:transform; transition:transform 0.15s ease-out;
+  }
+  .medallion-ring{
+    position:absolute; inset:0; border-radius:50%;
+    background:conic-gradient(from 210deg, var(--gold-light), var(--wood-light) 20%, var(--gold) 40%, var(--wood-light) 60%, var(--gold-light) 80%, var(--wood-light) 100%);
+    box-shadow:0 26px 40px var(--shadow-hard), inset 0 0 0 6px var(--bark), inset 0 0 0 10px var(--gold-light);
+  }
+  .medallion-portrait{
+    position:absolute; inset:9%; border-radius:50%;
+    background:radial-gradient(circle at 42% 30%, #4a2f18, var(--bark) 72%);
+    box-shadow:inset 0 0 30px rgba(0,0,0,0.6), 0 16px 26px var(--shadow-hard);
+    transform:translateZ(26px); overflow:hidden;
+  }
+  .medallion-portrait svg, .medallion-portrait img{ width:100%; height:100%; display:block; object-fit:cover; }
+  .medallion-portrait .img-fallback{
+    display:none; width:100%; height:100%; align-items:center; justify-content:center;
+    color:var(--gold-light); font-family:'Playfair Display', serif; font-weight:700; font-size:2rem;
+  }
+  .medallion-caption{
+    margin-top:-2px; background:var(--maroon); color:var(--gold-light);
+    font-family:'Playfair Display', serif; font-weight:700; font-size:0.76rem;
+    letter-spacing:0.03em; padding:6px 16px; border-radius:3px;
+    box-shadow:0 8px 14px var(--shadow-hard); white-space:nowrap;
+  }
+  .floaty{ position:absolute; filter:drop-shadow(0 8px 12px var(--shadow-hard)); }
+  .f-clove{ width:14%; top:0%; left:-4%; transform:translateZ(70px) rotate(-12deg); }
+  .f-ship{ width:24%; bottom:6%; right:-12%; transform:translateZ(50px) rotate(6deg); }
+  .f-fort{ width:18%; top:6%; right:-8%; transform:translateZ(40px); }
+  .f-kris{ width:12%; bottom:-2%; left:4%; transform:translateZ(80px) rotate(20deg); }
+  .cover-text{ text-align:center; max-width:560px; margin:0 auto; }
+  .cover-text p{ color:var(--ink-soft); font-size:0.9rem; }
+  .hero-tags{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
+  .hero-tags span{
+    border:1px solid var(--wood); color:var(--wood); font-family:'Lora', serif;
+    font-size:0.74rem; padding:4px 12px; border-radius:999px; background:rgba(255,255,255,0.25);
+  }
+
+  .cover-page{ text-align:center; padding-top:12px; max-width:680px; margin:0 auto; position:relative; }
+  .cover-page .slide-eyebrow{ font-size:1rem; }
+  .start-btn{
+    margin-top:22px; font-family:'Playfair Display', serif; font-weight:700; font-size:1rem;
+    color:var(--gold-light); background:var(--maroon); border:1px solid var(--bark);
+    border-radius:999px; padding:12px 30px; cursor:pointer;
+    box-shadow:0 12px 20px var(--shadow-soft); transition:transform 0.15s ease;
+  }
+  .start-btn:hover{ transform:translateY(-2px); }
+
+  /* tombol lanjut kontekstual di setiap halaman, bergaya sama seperti "Mulai Membaca" */
+  .continue-btn{
+    display:inline-flex; align-items:center; gap:8px; clear:both; margin-top:22px;
+    font-family:'Playfair Display', serif; font-weight:700; font-size:0.92rem;
+    color:var(--gold-light); background:var(--maroon); border:1px solid var(--bark);
+    border-radius:999px; padding:11px 24px; cursor:pointer;
+    box-shadow:0 10px 18px var(--shadow-soft); transition:transform 0.15s ease;
+  }
+  .continue-btn:hover{ transform:translateY(-2px); }
+
+  /* kotak kecil pengisi ruang kosong di bagian bawah tiap halaman */
+  .mini-note{
+    margin-top:16px; padding:12px 16px; border:1px dashed var(--wood); border-radius:8px;
+    background:rgba(107,66,38,0.07); font-size:0.88rem; color:var(--ink-soft); max-width:60ch;
+  }
+  .mini-note strong{ color:var(--maroon); }
+
+  .tl-track{ position:relative; padding-left:24px; border-left:3px solid var(--wood); margin-top:14px; }
+  .tl-item{ position:relative; padding:2px 0 24px 20px; opacity:0; transform:translateX(-16px); }
+  .tl-item.play{ animation:tlIn 0.5s ease forwards; }
+  @keyframes tlIn{ to{ opacity:1; transform:translateX(0); } }
+  .tl-item:last-child{ padding-bottom:2px; }
+  .tl-item::before{
+    content:""; position:absolute; left:-31px; top:4px; width:15px; height:15px;
+    border-radius:50%; background:var(--gold-light); border:3px solid var(--maroon);
+    box-shadow:0 3px 6px var(--shadow-soft);
+  }
+  .tl-year{ font-family:'Playfair Display', serif; font-weight:700; color:var(--maroon); font-size:1rem; }
+  .tl-item h3{ font-size:1.02rem; margin-top:2px; }
+  .tl-item p{ color:var(--ink-soft); margin-top:3px; max-width:58ch; font-size:0.92rem; }
+
+  .slide-closing{ text-align:center; }
+  .slide-closing .slide-heading{ margin-bottom:6px; }
+  .makna{ text-align:center; }
+  .makna > p{ margin:0 auto; max-width:64ch; }
+  .makna-extras{ display:flex; gap:22px; justify-content:center; align-items:center; flex-wrap:wrap; margin:18px auto 0; max-width:700px; }
+  .trivia-box{
+    flex:1 1 280px; max-width:400px; padding:16px 20px;
+    background:rgba(255,255,255,0.35); border:2px dashed var(--wood); border-radius:10px;
+    text-align:left; box-shadow:0 6px 14px rgba(0,0,0,0.15);
+  }
+  .trivia-box .trivia-label{ font-family:'Playfair Display', serif; font-weight:700; color:var(--maroon); font-size:0.95rem; margin:0 0 6px; }
+  .trivia-box p{ font-size:0.9rem; color:var(--ink-soft); margin:0; }
+
+  .qr-box{ flex:0 0 auto; text-align:center; }
+  .qr-frame{
+    width:150px; height:150px; margin:0 auto; background:#fff;
+    border:6px solid var(--wood); outline:2px solid var(--gold); outline-offset:-6px;
+    box-shadow:0 10px 20px var(--shadow-soft); overflow:hidden; position:relative;
+  }
+  .qr-frame img{ width:100%; height:100%; object-fit:contain; display:block; background:#fff; }
+  .qr-frame .qr-fallback{
+    display:none; width:100%; height:100%; align-items:center; justify-content:center; text-align:center;
+    padding:10px; font-size:0.74rem; line-height:1.35; color:var(--ink-soft); font-style:italic;
+    background:repeating-linear-gradient(45deg, rgba(107,66,38,0.06), rgba(107,66,38,0.06) 8px, transparent 8px, transparent 16px);
+  }
+  .qr-label{ margin:8px 0 0 !important; font-family:'Playfair Display', serif; font-weight:700; font-size:0.86rem; color:var(--maroon); }
+
+  .footer-note{ margin-top:22px; padding-top:16px; border-top:3px double var(--wood); text-align:center; color:var(--ink-soft); font-size:0.8rem; }
+  .kelompok-box{
+    margin:0 auto; max-width:420px; padding:16px 20px;
+    border:2px dashed var(--wood); border-radius:8px; background:rgba(255,255,255,0.3); position:relative;
+  }
+  .kelompok-label{ font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--maroon); margin:0; }
+  .kelompok-name{ font-family:'Playfair Display', serif; font-weight:700; font-size:1.15rem; color:var(--bark); margin:4px 0 0; }
+  .kelompok-members{ font-size:0.88rem; color:var(--ink-soft); margin:6px 0 0; line-height:1.9; }
+  .slide .kelompok-box p{ max-width:none; margin-left:auto; margin-right:auto; }
+
+  .pager{
+    flex:none; display:flex; align-items:center; justify-content:center; gap:12px;
+    padding:14px 30px 14px 58px; border-top:3px double var(--wood);
+    background:linear-gradient(180deg, var(--paper-2), var(--paper-3));
+  }
+  .pager button.nav-btn{
+    font-family:'Playfair Display', serif; font-weight:700; font-size:0.88rem;
+    color:var(--gold-light); background:var(--maroon); border:1px solid var(--bark);
+    border-radius:999px; padding:9px 18px; cursor:pointer; box-shadow:0 8px 14px var(--shadow-soft);
+    transition:transform 0.15s ease, opacity 0.15s ease;
+  }
+  .pager button.nav-btn:hover:not(:disabled){ transform:translateY(-2px); }
+  .pager button.nav-btn:disabled{ opacity:0.35; cursor:default; box-shadow:none; }
+  .dots{ display:flex; gap:6px; flex-wrap:wrap; justify-content:center; }
+  .dots button{ width:10px; height:10px; border-radius:50%; border:2px solid var(--wood); background:transparent; padding:0; cursor:pointer; }
+  .dots button.active{ background:var(--maroon); border-color:var(--maroon); }
+
+  #transitionOverlay{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:9; }
+  .t-el{ position:absolute; inset:0; }
+
+  .t-ship .waterline{
+    position:absolute; left:0; right:0; top:50%; height:2px;
+    background:linear-gradient(90deg, transparent, var(--wood) 20%, var(--wood) 80%, transparent);
+    opacity:0.55; transform:translateY(-50%);
+  }
+  .t-ship .sail-ship{
+    position:absolute; top:50%; left:-22%; width:44%; max-width:250px;
+    transform:translateY(-58%); filter:drop-shadow(0 10px 14px var(--shadow-hard));
+    animation:sailAcross 0.95s cubic-bezier(.34,.06,.36,1) forwards;
+  }
+  @keyframes sailAcross{
+    0%{ left:-22%; transform:translateY(-58%) rotate(-2deg); }
+    50%{ transform:translateY(-64%) rotate(1deg); }
+    100%{ left:104%; transform:translateY(-58%) rotate(-2deg); }
+  }
+
+  .t-bookflip{ perspective:1400px; }
+  .t-bookflip .flip-page{
+    position:absolute; inset:0; transform-origin:left center;
+    background:linear-gradient(120deg, var(--paper-2), var(--paper-3));
+    border-right:3px solid var(--wood); box-shadow:0 0 0 rgba(0,0,0,0);
+    animation:pageFlipAnim 1s cubic-bezier(.45,.02,.25,1) forwards;
+  }
+  @keyframes pageFlipAnim{
+    0%{ transform:rotateY(0deg); box-shadow:0 0 0 rgba(0,0,0,0); }
+    45%{ transform:rotateY(-88deg); box-shadow:26px 0 40px rgba(0,0,0,0.5); }
+    100%{ transform:rotateY(-180deg); box-shadow:0 0 0 rgba(0,0,0,0); }
+  }
+
+  .t-wave .wave-band{
+    position:absolute; top:-30%; bottom:-30%; left:-40%; width:55%;
+    background:linear-gradient(100deg, transparent, var(--maroon) 35%, var(--gold) 55%, transparent);
+    transform:skewX(-15deg) translateX(-140%);
+    animation:waveSweepAnim 0.85s cubic-bezier(.4,0,.2,1) forwards;
+  }
+  @keyframes waveSweepAnim{
+    0%{ transform:skewX(-15deg) translateX(-140%); }
+    100%{ transform:skewX(-15deg) translateX(240%); }
+  }
+
+  .t-compass .compass-emblem{
+    position:absolute; top:50%; left:50%; width:110px; height:110px;
+    transform:translate(-50%,-50%) scale(0) rotate(0deg); opacity:0;
+    filter:drop-shadow(0 10px 18px var(--shadow-hard));
+    animation:compassSpinAnim 0.95s ease-in-out forwards;
+  }
+  @keyframes compassSpinAnim{
+    0%{ transform:translate(-50%,-50%) scale(0) rotate(0deg); opacity:0; }
+    40%{ transform:translate(-50%,-50%) scale(1.15) rotate(200deg); opacity:1; }
+    60%{ transform:translate(-50%,-50%) scale(1.15) rotate(220deg); opacity:1; }
+    100%{ transform:translate(-50%,-50%) scale(0) rotate(380deg); opacity:0; }
+  }
+
+  /* ---------- kotak info foto (mirip lightbox) ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:50; display:none; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    padding:24px; background:rgba(20,10,0,.9); cursor:zoom-out;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{ max-width:88vw; max-height:56vh; border:8px solid #fffaf0; box-shadow:0 20px 50px rgba(0,0,0,.6); background:#fffaf0; }
+  .lightbox .lb-cap{ font-family:'Playfair Display', serif; font-weight:700; font-size:1.15rem; color:var(--gold-light); text-align:center; }
+  .lightbox .lb-info{ max-width:52ch; text-align:center; color:var(--paper); font-size:.95rem; line-height:1.6; margin:0; }
+  .lightbox .lb-hint{ font-size:.8rem; color:#cdb27f; }
+
+  @media (max-width:640px){
+    .masthead{ padding:16px 18px 10px; }
+    .slide{ padding:22px 20px 18px; }
+    .pager{ padding:12px 16px; }
+    .side-figure{ flex:0 0 140px; width:140px; margin:14px auto 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="map-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 1200" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M40 0 L0 0 0 40" fill="none" stroke="#6b4226" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="800" height="1200" fill="url(#grid)"/>
+      <circle cx="640" cy="160" r="70" fill="none" stroke="#6b4226" stroke-width="1.5"/>
+      <path d="M640,90 L648,150 L640,230 L632,150 Z" fill="#6b4226"/>
+      <path d="M570,160 L630,168 L710,160 L630,152 Z" fill="#6b4226"/>
+      <path d="M120,300 Q160,280 190,310 Q210,340 180,360 Q140,375 120,345 Q105,320 120,300 Z" fill="none" stroke="#6b4226" stroke-width="1.5"/>
+      <path d="M100,600 Q170,560 230,610 Q260,650 210,680 Q140,700 105,655 Q80,625 100,600 Z" fill="none" stroke="#6b4226" stroke-width="1.5"/>
+      <path d="M500,850 Q560,820 610,860 Q630,900 580,920 Q520,935 495,895 Q480,865 500,850 Z" fill="none" stroke="#6b4226" stroke-width="1.5"/>
+      <path d="M150,340 Q300,420 480,500 Q600,560 700,650" fill="none" stroke="#6b4226" stroke-width="1.2" stroke-dasharray="3 8"/>
+      <path d="M200,650 Q350,700 480,780 Q560,830 610,880" fill="none" stroke="#6b4226" stroke-width="1.2" stroke-dasharray="3 8"/>
+      <circle cx="230" cy="980" r="55" fill="none" stroke="#6b4226" stroke-width="1.5"/>
+      <path d="M230,925 L236,975 L230,1035 L224,975 Z" fill="#6b4226"/>
+      <path d="M175,980 L225,987 L285,980 L225,973 Z" fill="#6b4226"/>
+    </svg>
+  </div>
+
+  <div class="spiral" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="masthead">
+    <div class="kicker">Mading Sejarah — Bab Imperialisme &amp; Kolonialisme di Nusantara</div>
+    <h1>Perlawanan Sultan Baabullah</h1>
+    <div class="rule"></div>
+  </div>
+
+  <div class="slides-viewport" id="slidesViewport">
+
+    <!-- SLIDE 0 : SAMPUL -->
+    <section class="slide active" data-title="Sampul">
+      <div class="cover-page">
+        <svg class="doodle" viewBox="0 0 40 40" style="width:34px; top:-6px; left:6px; transform:rotate(-12deg);">
+          <path d="M20,2 L23,15 L36,15 L25,23 L29,36 L20,27 L11,36 L15,23 L4,15 L17,15 Z" fill="#b8892f"/>
+        </svg>
+        <svg class="doodle" viewBox="0 0 40 40" style="width:30px; top:0; right:10px; transform:rotate(14deg);">
+          <path d="M20,2 L23,15 L36,15 L25,23 L29,36 L20,27 L11,36 L15,23 L4,15 L17,15 Z" fill="#7a2e1d"/>
+        </svg>
+        <div class="slide-heading play">
+          <span class="slide-eyebrow">Mading Sejarah</span>
+          <h2>Perlawanan Sultan Baabullah dari Ternate, Maluku Utara</h2>
+        </div>
+
+        <div class="cover-wrap">
+          <div class="medallion-entrance" id="medallionEntrance">
+            <div class="medallion-stage" id="medallion" tabindex="0" role="button"
+                 data-cap="Sultan Baabullah, ± 1528–1583"
+                 data-info="Sultan Baabullah adalah sultan Ternate ke-24, naik takhta pada 1570 setelah ayahnya, Sultan Khairun, dibunuh Portugis. Ia memimpin rakyat Ternate mengepung Benteng Kastela hingga Portugis angkat kaki, dan berkat perluasan wilayahnya, ia dijuluki 'Tuan dari Tujuh Puluh Dua Pulau'.">
+              <div class="medallion-ring"></div>
+              <div class="medallion-portrait">
+                <img src="Sultan Baabullah ternate.jpg" alt="Sultan Baabullah"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="img-fallback">SB</div>
+              </div>
+              <svg class="floaty f-clove" viewBox="0 0 60 60" fill="none">
+                <path d="M30 6 L34 22 L30 30 L26 22 Z" fill="#4a2f18"/>
+                <circle cx="30" cy="6" r="6" fill="#7a2e1d"/>
+                <path d="M30 30 L30 54" stroke="#4a2f18" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+              <svg class="floaty f-ship" viewBox="0 0 120 90" fill="none">
+                <path d="M10,60 Q60,80 110,60 L100,72 Q60,86 20,72 Z" fill="#3b2010"/>
+                <rect x="56" y="10" width="4" height="52" fill="#3b2010"/>
+                <path d="M60,14 L92,44 L60,50 Z" fill="#dfc79a"/>
+                <path d="M60,20 L38,46 L60,50 Z" fill="#cdb27f"/>
+              </svg>
+              <svg class="floaty f-fort" viewBox="0 0 100 100" fill="none">
+                <rect x="20" y="40" width="60" height="46" fill="#5c3a20"/>
+                <rect x="15" y="30" width="12" height="16" fill="#5c3a20"/>
+                <rect x="73" y="30" width="12" height="16" fill="#5c3a20"/>
+                <rect x="44" y="24" width="12" height="20" fill="#5c3a20"/>
+              </svg>
+              <svg class="floaty f-kris" viewBox="0 0 40 100" fill="none">
+                <path d="M20,0 Q28,20 18,32 Q30,44 16,56 Q28,66 20,80 L20,100" stroke="#b8892f" stroke-width="4" fill="none" stroke-linecap="round"/>
+                <rect x="12" y="80" width="16" height="18" rx="3" fill="#4a2f18"/>
+              </svg>
+            </div>
+            <div class="medallion-caption">Sultan Baabullah, ± 1528–1583</div>
+          </div>
+          <div class="cover-text">
+            <p>Sultan Baabullah, pemimpin perlawanan rakyat Ternate melawan Portugis.</p>
+            <div class="hero-tags">
+              <span>Ternate · Maluku Utara</span>
+              <span>Abad ke-16</span>
+              <span>Melawan Portugis</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="start-btn" id="startBtn">Mulai Membaca ⛵</button>
+      </div>
+    </section>
+
+    <!-- SLIDE 1 : SECTION I -->
+    <section class="slide" data-title="I. Jantung Cengkih">
+      <div class="slide-body">
+        <div class="slide-text">
+          <div class="slide-heading"><span class="slide-eyebrow">I.</span><h2>Ternate, Jantung Perdagangan Cengkih</h2></div>
+          <p class="dropcap">Sejak lama, Ternate dikenal sebagai pusat utama perdagangan cengkih yang paling dicari di dunia. Kekayaan rempah inilah yang membuat Portugis datang dan mendirikan benteng di sana pada tahun 1522, sebuah langkah yang perlahan menciptakan ketergantungan besar antara Ternate dan bangsa asing tersebut.</p>
+          <p>Pada mulanya, hubungan ini berjalan tanpa banyak gesekan. Ternate menganggap Portugis sekadar pedagang yang juga berkuasa di bandar persinggahan Malaka, dan mengakui bahwa senjata mereka jauh lebih unggul. Namun kenyamanan itu tidak bertahan lama — seiring waktu, perilaku para serdadu Portugis di bumi Ternate mulai menimbulkan ketidaksukaan di kalangan rakyat.</p>
+          <div class="mini-note"><strong>Catatan:</strong> Karena posisinya yang strategis, Ternate lama menjadi incaran berbagai bangsa Eropa — bukan hanya Portugis — yang berlomba menguasai jalur rempah Nusantara timur.</div>
+          <button type="button" class="continue-btn">Lanjut: Muslihat di Kastela ⚔️</button>
+        </div>
+        <div>
+          <div class="side-figure" tabindex="0" role="button"
+               data-info="Cengkih Ternate begitu berharga sehingga di Eropa abad ke-16 harganya bisa disetarakan dengan emas — inilah yang membuat bangsa Eropa berlomba mencari jalan langsung ke Maluku."
+               data-cap="Cengkih dan pala, rempah andalan Maluku">
+            <img src="cengkeh-dan-pala-rempah-andalan-maluku.jpg" alt="Cengkeh dan pala, rempah andalan Maluku"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="img-fallback" style="font-size:0.85rem; text-align:center; padding:8px;">Cengkih &amp; Pala</div>
+          </div>
+          <div class="side-caption">Cengkih dan pala — rempah andalan Maluku<span class="tap-hint">Ketuk untuk info</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 : SECTION II -->
+    <section class="slide" data-title="II. Tipu Muslihat">
+      <div class="slide-body">
+        <div class="slide-text">
+          <div class="slide-heading"><span class="slide-eyebrow">II.</span><h2>Tipu Muslihat di Benteng Kastela</h2></div>
+          <p class="dropcap">Ketegangan yang lama terpendam akhirnya meletus lewat sebuah pengkhianatan. Pada 27 Februari 1570, Portugis berhasil membujuk Sultan Ternate, Sultan Khairun, untuk datang ke Benteng Kastela melalui sebuah undangan licik. Tanpa curiga sedikit pun, Sultan Khairun memenuhi undangan tersebut.</p>
+          <div class="pull">"Undangan itu ternyata hanyalah muslihat Portugis untuk membunuh Sultan Khairun."</div>
+          <p>Sultan Khairun dibunuh oleh Antonio Pimental atas perintah Gubernur Portugis ke-18 di wilayah Maluku, Diego Lopez de Mesquita. Peristiwa keji inilah yang kelak menjadi pemicu utama perlawanan besar rakyat Ternate.</p>
+          <button type="button" class="continue-btn">Lanjut: Baabullah Naik Takhta 👑</button>
+        </div>
+        <div>
+          <div class="side-figure" tabindex="0" role="button"
+               data-info="Benteng Kastela dibangun Portugis pada 1522 dan menjadi pusat kekuasaan mereka di Ternate selama lebih dari lima dekade, sebelum akhirnya jatuh ke tangan rakyat Ternate."
+               data-cap="Benteng Kastela / Gam Lamo">
+            <img src="benteng.jpg" alt="Reruntuhan Benteng Kastela"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="img-fallback" style="font-size:0.85rem; text-align:center; padding:8px;">Benteng Kastela</div>
+          </div>
+          <div class="side-caption">Benteng Kastela / Gam Lamo<span class="tap-hint">Ketuk untuk info</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 : SECTION III -->
+    <section class="slide" data-title="III. Naik Takhta">
+      <div class="slide-body">
+        <div class="slide-text">
+          <div class="slide-heading"><span class="slide-eyebrow">III.</span><h2>Baabullah Naik Takhta, Amarah Rakyat Tersulut</h2></div>
+          <p class="dropcap">Sepeninggal ayahnya, Sultan Baabullah pun naik takhta menggantikan Sultan Khairun. Ia segera menuntut pemerintah kolonial Portugis bertanggung jawab dengan menghukum Gubernur Lopez atas kematian ayahnya.</p>
+          <p>Tuntutan itu tidak pernah digubris. Sikap Portugis yang mengabaikan permintaan keadilan inilah yang akhirnya membangkitkan emosi Sultan Baabullah — dan menjadi titik balik yang mengubah kekecewaan pribadi menjadi perlawanan seluruh rakyat Ternate.</p>
+          <div class="figure-note">
+            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="none" stroke="#6b4226" stroke-width="2"/><path d="M20 10 L20 22 M20 28 L20 30" stroke="#7a2e1d" stroke-width="3" stroke-linecap="round"/></svg>
+            <span>Kemarahan Baabullah bukan sekadar dendam pribadi, melainkan tuntutan atas hak dan keadilan bagi rakyatnya.</span>
+          </div>
+          <button type="button" class="continue-btn">Lanjut: Pengepungan Gam Lamo ⛺</button>
+        </div>
+        <div>
+          <div class="side-figure" tabindex="0" role="button"
+               data-info="Baabullah memerintah Ternate dari 1570 hingga 1583. Di bawah kepemimpinannya, wilayah kesultanan meluas hingga ke Sulawesi, Filipina selatan, dan kepulauan lain di Nusantara timur."
+               data-cap="Lambang takhta Kesultanan Ternate">
+            <img src="naik-tahta.jpeg" alt="Ilustrasi Sultan Baabullah naik takhta"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="img-fallback" style="font-size:0.85rem; text-align:center; padding:8px;">Naik Takhta</div>
+          </div>
+          <div class="side-caption">Lambang takhta Kesultanan Ternate<span class="tap-hint">Ketuk untuk info</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 : SECTION IV -->
+    <section class="slide" data-title="IV. Mengepung Gam Lamo">
+      <div class="slide-body">
+        <div class="slide-text">
+          <div class="slide-heading"><span class="slide-eyebrow">IV.</span><h2>Empat Tahun Mengepung Gam Lamo</h2></div>
+          <p class="dropcap">Sultan Baabullah bersama seluruh rakyat Ternate kemudian mengepung Benteng Kastela — yang pada masa itu juga dikenal dengan nama Benteng Gam Lamo, atau "Kampung Besar". Pengepungan ini berlangsung selama empat tahun penuh, dengan satu tuntutan tegas: Portugis harus angkat kaki dari Ternate.</p>
+          <p>Peristiwa inilah yang menjadi titik tolak perjuangan rakyat Ternate melawan penguasa asing. Melalui perlawanan panjang ini, rakyat Ternate belajar satu pelajaran penting: bahwa persatuan adalah kekuatan utama dalam mempertahankan hak atas tanah air dan segala sumber daya di dalamnya.</p>
+          <div class="mini-note"><strong>Catatan:</strong> Pengepungan ini melibatkan hampir seluruh rakyat Ternate, bukan hanya prajurit — bukti bahwa perlawanan ini benar-benar perjuangan bersama, bukan sekadar perang kerajaan.</div>
+          <button type="button" class="continue-btn">Lanjut: Jejak Waktu Perlawanan 🕰️</button>
+        </div>
+        <div>
+          <div class="side-figure" tabindex="0" role="button"
+               data-info="Selama pengepungan, pasukan Ternate memutus jalur pasokan makanan dan air ke benteng, memaksa penghuninya bertahan dalam kondisi yang semakin sulit hingga akhirnya menyerah."
+               data-cap="Pengepungan selama empat tahun">
+            <img src="pengepungan.jpg" alt="Pengepungan Benteng Kastela"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="img-fallback" style="font-size:0.85rem; text-align:center; padding:8px;">Pengepungan</div>
+          </div>
+          <div class="side-caption">Pengepungan selama empat tahun<span class="tap-hint">Ketuk untuk info</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 : TIMELINE -->
+    <section class="slide" data-title="Jejak Waktu">
+      <div class="slide-heading"><h2>Jejak Waktu Perlawanan</h2></div>
+      <div class="tl-track" id="tlTrack">
+        <div class="tl-item">
+          <div class="tl-year">1522</div>
+          <h3>Portugis mendirikan Benteng Kastela</h3>
+          <p>Menandai awal kekuasaan dan ketergantungan dagang Ternate terhadap Portugis.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">27 Februari 1570</div>
+          <h3>Sultan Khairun dibunuh</h3>
+          <p>Tewas dibunuh Antonio Pimental atas perintah Gubernur Diego Lopez de Mesquita, setelah diundang secara licik ke Benteng Kastela.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1570</div>
+          <h3>Sultan Baabullah naik takhta</h3>
+          <p>Menuntut pertanggungjawaban Portugis; tuntutan diabaikan hingga membangkitkan perlawanan rakyat.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1570 – 1574</div>
+          <h3>Pengepungan Benteng Kastela</h3>
+          <p>Selama empat tahun, Sultan Baabullah dan rakyat Ternate mengepung benteng dan mengultimatum Portugis untuk pergi.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1578</div>
+          <h3>Portugis resmi meninggalkan Ternate</h3>
+          <p>Di bawah Sultan Baabullah, Ternate berkembang menjadi salah satu kesultanan paling berpengaruh di Nusantara timur, hingga ia dijuluki "Tuan dari Tujuh Puluh Dua Pulau".</p>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <button type="button" class="continue-btn">Lanjut: Makna Perlawanan ✦</button>
+      </div>
+    </section>
+
+    <!-- SLIDE 6 : MAKNA + QUIZ + DISUSUN OLEH -->
+    <section class="slide slide-closing" data-title="Makna">
+      <div class="slide-heading"><h2>Makna Perlawanan</h2></div>
+      <div class="makna">
+        <p>Ternate adalah tanah air mereka, dan segala sumber daya di dalamnya layak untuk mereka perjuangkan. Kisah Sultan Baabullah mengajarkan bahwa persatuan rakyat — bukan hanya kekuatan seorang pemimpin — adalah yang mampu mengusir penjajah dan mempertahankan martabat sebuah bangsa.</p>
+
+        <div class="makna-extras">
+          <div class="trivia-box">
+            <p class="trivia-label">✦ Tahukah kamu?</p>
+            <p>Sultan Baabullah dijuluki <strong>"Tuan dari 72 Pulau"</strong> karena wilayah Ternate meluas hingga banyak pulau di Nusantara timur.</p>
+          </div>
+
+          <div class="qr-box">
+            <div class="qr-frame">
+              <img src="QR.jpeg" alt="Barcode untuk scan quiz"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="qr-fallback">Tempel foto barcode game di sini</div>
+            </div>
+            <p class="qr-label">Scan untuk Quiz!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        <div class="kelompok-box">
+          <p class="kelompok-label">Disusun oleh</p>
+          <p class="kelompok-name">Kelompok Ternate</p>
+          <p class="kelompok-members">
+            1. Alif Maulana <br>
+            2. Chaerul Rizky <br>
+            3. Diani Putri <br>
+            4. M Sultan Sopian
+          </p>
+        </div>
+      </div>
+      <button type="button" class="continue-btn" id="loopBtn">Baca Ulang dari Awal ⟲</button>
+    </section>
+
+    <div id="transitionOverlay"></div>
+  </div>
+
+  <div class="pager">
+    <div class="dots" id="dots"></div>
+  </div>
+
+</div>
+
+<!-- Info foto -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Info foto" tabindex="-1">
+  <img src="" alt="">
+  <div class="lb-cap"></div>
+  <p class="lb-info"></p>
+  <div class="lb-hint">Klik di mana saja atau tekan Esc untuk menutup</div>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var viewport = document.getElementById('slidesViewport');
+  var overlay = document.getElementById('transitionOverlay');
+  var dotsWrap = document.getElementById('dots');
+  var startBtn = document.getElementById('startBtn');
+  var current = 0;
+  var animating = false;
+  var LAST = slides.length - 1;
+
+  var TRANSITIONS = ['bookflip', 'ship', 'wave', 'compass', 'ship', 'wave'];
+
+  var TPL = {
+    ship: '<div class="t-el t-ship"><div class="waterline"></div>' +
+      '<svg class="sail-ship" viewBox="0 0 120 90" fill="none">' +
+      '<path d="M6,60 Q60,84 114,60 L102,74 Q60,90 18,74 Z" fill="#3b2010"/>' +
+      '<rect x="57" y="8" width="4" height="56" fill="#3b2010"/>' +
+      '<path d="M61,12 L96,46 L61,52 Z" fill="#e3c778"/>' +
+      '<path d="M61,18 L34,48 L61,52 Z" fill="#dfc79a"/></svg></div>',
+    bookflip: '<div class="t-el t-bookflip"><div class="flip-page"></div></div>',
+    wave: '<div class="t-el t-wave"><div class="wave-band"></div></div>',
+    compass: '<div class="t-el t-compass">' +
+      '<svg class="compass-emblem" viewBox="0 0 100 100">' +
+      '<circle cx="50" cy="50" r="46" fill="none" stroke="#e3c778" stroke-width="4"/>' +
+      '<path d="M50,10 L58,50 L50,90 L42,50 Z" fill="#b8892f"/>' +
+      '<circle cx="50" cy="50" r="6" fill="#7a2e1d"/></svg></div>'
+  };
+
+  slides.forEach(function(_, i){
+    var d = document.createElement('button');
+    d.type = 'button';
+    d.setAttribute('aria-label', 'Ke halaman ' + (i + 1));
+    if(i === 0){ d.classList.add('active'); }
+    d.addEventListener('click', function(){ goTo(i); });
+    dotsWrap.appendChild(d);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function updateControls(){
+    dots.forEach(function(d, i){ d.classList.toggle('active', i === current); });
+  }
+
+  function playHeadingAnim(slideEl){
+    var h = slideEl.querySelector('.slide-heading');
+    if(!h){ return; }
+    h.classList.remove('play');
+    void h.offsetWidth;
+    h.classList.add('play');
+  }
+
+  function playMedallionAnim(slideEl){
+    var m = slideEl.querySelector('#medallionEntrance');
+    if(!m){ return; }
+    m.classList.remove('play');
+    void m.offsetWidth;
+    m.classList.add('play');
+  }
+
+  function playTimelineStagger(slideEl){
+    var items = slideEl.querySelectorAll('.tl-item');
+    items.forEach(function(item, i){
+      item.classList.remove('play');
+      item.style.animationDelay = (i * 0.12) + 's';
+      void item.offsetWidth;
+      item.classList.add('play');
+    });
+  }
+
+  function playEntranceEffects(slideEl){
+    playHeadingAnim(slideEl);
+    playMedallionAnim(slideEl);
+    if(slideEl.querySelector('#tlTrack')){ playTimelineStagger(slideEl); }
+  }
+
+  function playTransition(type, callback){
+    overlay.innerHTML = TPL[type] || TPL.ship;
+    var swapped = false;
+    function doSwap(){ if(!swapped){ swapped = true; callback(); } }
+    setTimeout(doSwap, 430);
+    setTimeout(function(){ overlay.innerHTML = ''; animating = false; }, 1000);
+  }
+
+  function goTo(index){
+    if(animating || index === current){ return; }
+    if(index < 0 || index >= slides.length){ return; }
+    animating = true;
+    var type = TRANSITIONS[Math.min(current, index)] || 'ship';
+    playTransition(type, function(){
+      slides[current].classList.remove('active');
+      current = index;
+      var el = slides[current];
+      el.classList.add('active');
+      el.scrollTop = 0;
+      updateControls();
+      playEntranceEffects(el);
+    });
+  }
+
+  if(startBtn){ startBtn.addEventListener('click', function(){ goTo(1); }); }
+
+  // tombol lanjut yang menyatu dengan isi tiap halaman, bukan pager generik
+  [].slice.call(document.querySelectorAll('.continue-btn')).forEach(function(btn){
+    if(btn.id === 'loopBtn'){ return; }
+    btn.addEventListener('click', function(){ goTo(current === LAST ? 0 : current + 1); });
+  });
+  var loopBtn = document.getElementById('loopBtn');
+  if(loopBtn){ loopBtn.addEventListener('click', function(){ goTo(0); }); }
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight'){ goTo(current === LAST ? 0 : current + 1); }
+    if(e.key === 'ArrowLeft'){ goTo(current - 1); }
+  });
+
+  var touchStartX = null;
+  viewport.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; }, {passive:true});
+  viewport.addEventListener('touchend', function(e){
+    if(touchStartX === null){ return; }
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if(Math.abs(dx) > 50){
+      if(dx < 0){ goTo(current === LAST ? 0 : current + 1); } else { goTo(current - 1); }
+    }
+    touchStartX = null;
+  }, {passive:true});
+
+  updateControls();
+  playEntranceEffects(slides[0]);
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 3D tilt pada medali sampul
+  var stage = document.getElementById('medallion');
+  if(stage && !reduceMotion){
+    var bounds, raf;
+    function setFromXY(px, py){
+      var rx = (py - 0.5) * -14;
+      var ry = (px - 0.5) * 18;
+      stage.style.transform = 'rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+    }
+    function onMove(clientX, clientY){
+      bounds = stage.getBoundingClientRect();
+      var px = (clientX - bounds.left) / bounds.width;
+      var py = (clientY - bounds.top) / bounds.height;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function(){ setFromXY(px, py); });
+    }
+    window.addEventListener('mousemove', function(e){ onMove(e.clientX, e.clientY); });
+    window.addEventListener('mouseleave', function(){ stage.style.transform = 'rotateX(0deg) rotateY(0deg)'; });
+    stage.addEventListener('touchmove', function(e){
+      if(e.touches && e.touches[0]){ onMove(e.touches[0].clientX, e.touches[0].clientY); }
+    }, {passive:true});
+  }
+
+  // foto di setiap slide: tilt mengikuti kursor + diketuk untuk info
+  var lb = document.getElementById('lightbox');
+  var lbImg = lb.querySelector('img');
+  var lbCap = lb.querySelector('.lb-cap');
+  var lbInfo = lb.querySelector('.lb-info');
+  var lastFocus = null;
+
+  function openLb(fig){
+    var img = fig.querySelector('img');
+    if(!img || img.style.display === 'none'){ return; }
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = fig.getAttribute('data-cap') || '';
+    lbInfo.textContent = fig.getAttribute('data-info') || '';
+    lastFocus = document.activeElement;
+    lb.classList.add('open');
+    lb.focus();
+  }
+  function closeLb(){
+    lb.classList.remove('open');
+    if(lastFocus){ lastFocus.focus(); }
+  }
+
+  // medali sampul: juga bisa diklik untuk membuka info Sultan Baabullah
+  if(stage){
+    stage.setAttribute('aria-label', 'Buka info: ' + (stage.getAttribute('data-cap') || ''));
+    stage.addEventListener('click', function(){ openLb(stage); });
+    stage.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLb(stage); }
+    });
+  }
+
+  [].slice.call(document.querySelectorAll('.side-figure')).forEach(function(fig){
+    fig.setAttribute('aria-label', 'Buka info foto: ' + (fig.getAttribute('data-cap') || ''));
+    fig.addEventListener('click', function(){ openLb(fig); });
+    fig.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLb(fig); }
+    });
+    if(!reduceMotion){
+      fig.addEventListener('mousemove', function(e){
+        fig.style.animationPlayState = 'paused';
+        var b = fig.getBoundingClientRect();
+        var px = (e.clientX - b.left) / b.width;
+        var py = (e.clientY - b.top) / b.height;
+        var rx = (py - 0.5) * -12;
+        var ry = (px - 0.5) * 14;
+        fig.style.transform = 'perspective(600px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) scale(1.04)';
+      });
+      fig.addEventListener('mouseleave', function(){
+        fig.style.transform = '';
+        fig.style.animationPlayState = '';
+      });
+    }
+  });
+  lb.addEventListener('click', closeLb);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && lb.classList.contains('open')){ closeLb(); }
+  });
+})();
+</script>
+</body>
+</html>
